@@ -1,0 +1,7 @@
+---
+# vars file for iac_ansible-role-mariadb
+
+packages:
+  - mariadb-server
+
+db_socket: "/var/lib/mysql/mysql.sock"

@@ -1,0 +1,4 @@
+---
+# defaults file for iac_ansible-role-mariadb
+
+root_password: "insecure"

@@ -1,0 +1,46 @@
+---
+# tasks file for iac_ansible-role-mariadb
+
+- name: Install packages
+  dnf:
+    name: "{{ packages }}"
+    state: present
+
+- name: Start and enable mariadb service
+  service:
+    name: mariadb
+    state: started
+    enabled: yes
+
+- name: Set root password
+  mysql_user:
+    name: root
+    password: "{{ root_password }}"
+    login_unix_socket: "{{ db_socket }}"
+    state: present
+
+- name: Remove test database
+  mysql_db:
+    name: test
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ db_socket }}"
+    state: absent
+
+- name: Remove all anonymous user accounts
+  mysql_user:
+    name: ""
+    host_all: "yes"
+    login_user: "root"
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ db_socket }}"
+    state: absent
+
+- name: Avoid external root login
+  mysql_user:
+    name: "root"
+    host_all: "yes"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ db_socket }}"
+    state: absent
