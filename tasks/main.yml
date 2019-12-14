@@ -52,7 +52,7 @@
     password: "{{ mariadb_root_password }}"
     host: "{{ item }}"
     login_user: root
-    login_password: "{{ mariadb_root_password }}"
-    login_unix_socket: "{{ mariadb_socket }}"
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ db_socket }}"
     state: present
   loop: "{{ local_hosts }}"
