@@ -44,3 +44,24 @@
     login_password: "{{ root_password }}"
     login_unix_socket: "{{ db_socket }}"
     state: absent
+
+- name: Allow local root login
+  mysql_user:
+    name: "root"
+    host: "{{ item }}"
+    login_user: root
+    login_password: "{{ root_password }}"
+    login_unix_socket: "{{ db_socket }}"
+    state: present
+  loop: "{{ local_hosts }}"
+
+- name: Set root password for local hosts
+  mysql_user:
+    name: root
+    password: "{{ mariadb_root_password }}"
+    host: "{{ item }}"
+    login_user: root
+    login_password: "{{ mariadb_root_password }}"
+    login_unix_socket: "{{ mariadb_socket }}"
+    state: present
+  loop: "{{ local_hosts }}"
