@@ -3,5 +3,6 @@
 
 packages:
   - mariadb-server
+  - python3-PyMySQL
 
 db_socket: "/var/lib/mysql/mysql.sock"
