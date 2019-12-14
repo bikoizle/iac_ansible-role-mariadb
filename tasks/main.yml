@@ -36,15 +36,6 @@
     login_unix_socket: "{{ db_socket }}"
     state: absent
 
-- name: Avoid external root login
-  mysql_user:
-    name: "root"
-    host_all: "yes"
-    login_user: root
-    login_password: "{{ root_password }}"
-    login_unix_socket: "{{ db_socket }}"
-    state: absent
-
 - name: Allow local root login
   mysql_user:
     name: "root"
