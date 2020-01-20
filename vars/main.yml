@@ -1,0 +1,13 @@
+---
+# vars file for iac_ansible-role-mariadb
+
+packages:
+  - mariadb-server
+  - python3-PyMySQL
+
+db_socket: "/var/lib/mysql/mysql.sock"
+
+local_hosts:
+  - localhost
+  - ::1
+  - 127.0.0.1
